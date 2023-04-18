@@ -53,3 +53,49 @@ for (let i = 0; i < 3; i++) {
   };
   setTimeout(log, 100);
 }
+
+//--------Currying-------
+//In JavaScript, "carrying" refers to the process of transforming a function that takes multiple arguments into a series of functions that take one argument at a time. Here are some practical applications of carrying in JavaScript:
+//Function composition: Carrying makes it easy to compose complex functions by breaking them down into simpler, reusable parts.
+const calculateTotalCost = (price, quantity) => price * quantity;
+const applyDiscount = (discount, amount) => amount - amount * discount;
+
+const applyDiscountToTotalCost = (discount) => (price, quantity) =>
+  applyDiscount(discount, calculateTotalCost(price, quantity));
+
+const tenPercentDiscount = applyDiscountToTotalCost(0.1);
+const discountedTotalCost = tenPercentDiscount(50, 2); // returns 90
+
+//Delayed execution: Carrying can be used to create functions that delay execution until all necessary arguments are provided.
+const add = (a, b) => a + b;
+const delayExecution =
+  (fn, ...args) =>
+  () =>
+    fn(...args);
+
+const delayedAdd = delayExecution(add, 2, 3);
+const result = delayedAdd(); // returns 5
+
+//Callback functions: Carrying can also be used to create callback functions that take a single argument. This can be useful when you need to pass a function as an argument to another function, but the receiving function only expects a single argument.
+//Error handling: Carrying can be used to create error-handling functions that take a single argument and return a boolean value indicating whether an error occurred. This can be useful in cases where you want to check for errors at different stages of your code, and handle them in a consistent manner.
+const divide = (a, b) => {
+  if (b === 0) {
+    throw new Error("Cannot divide by zero");
+  }
+  return a / b;
+};
+
+const safeDivide =
+  (fn) =>
+  (...args) => {
+    try {
+      return fn(...args);
+    } catch (e) {
+      console.error(e.message);
+      return null;
+    }
+  };
+
+const safeDivideBy = safeDivide(divide);
+const result1 = safeDivideBy(10, 2); // returns 5
+const result2 = safeDivideBy(10, 0); // logs "Cannot divide by zero" and returns null
