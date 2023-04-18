@@ -103,3 +103,42 @@ const numArray = [1, 2, 3, 4, 5];
 for (const num of numArray) {
   console.log("Iteration number " + num);
 }
+
+//------Functions-----------
+
+function add(a, b) {
+  return a + b;
+}
+const sum = add(10, 20);
+console.log(sum);
+
+//using arrow function syntax
+const subtract = (a, b) => a - b;
+const different = subtract(20, 10);
+console.log(different);
+
+//-----------Scope------------
+
+//Global Scope
+//can be accessed inside a block and a function scope
+const myName = "Ann";
+const myAge = 33;
+
+//Block scope
+if (true) {
+  let myNum = 1000;
+  console.log(myNum);
+  console.log(myAge + " from  block scope");
+}
+
+// console.log(myNum); // myNum is not defined, cannot access outside of a block
+
+//Function scope
+function testFn() {
+  let myString = "hello";
+  console.log(myString);
+  console.log(myName + " from  function scope");
+}
+
+testFn();
+// console.log(myString); // myString is not defined, cannot access outside of a function scope
