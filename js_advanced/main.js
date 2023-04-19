@@ -99,3 +99,44 @@ const safeDivide =
 const safeDivideBy = safeDivide(divide);
 const result1 = safeDivideBy(10, 2); // returns 5
 const result2 = safeDivideBy(10, 0); // logs "Cannot divide by zero" and returns null
+
+//-----------this-------
+//this keyword is used in a function refers to the object it belongs to. It makes functions re-usable by letting you decide the object value.
+
+//Implicit binding rule:
+const person = {
+  name: "Sam",
+  age: 10,
+  sayMyname: function () {
+    console.log(`My name is ${this.name}`);
+  },
+};
+
+person.sayMyname();
+
+//Explicit binding rule. Use call() to explicitly specify the object we referring to.
+
+function sayMyAge() {
+  console.log(`I am ${this.age} y.o.`);
+}
+
+sayMyAge.call(person);
+
+//new binding, using 'new' keyword
+
+//first create a constructor function, so we can create multiple persons from this function.
+function Person(name) {
+  this.name = name;
+}
+
+const person1 = new Person("Sam");
+console.log(person1.name);
+
+// Default binding - if none of the other three rules are matched, means if you didn't specify a reference to 'this' JS will default to the global scope.
+
+// globalThis.name = "Superman";
+function sayMyname() {
+  console.log(`My name is ${this.name}`);
+}
+
+sayMyname();
