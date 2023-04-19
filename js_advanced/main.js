@@ -197,3 +197,44 @@ class SuperHero extends PersonMain {
 const batman = new SuperHero("Bruce", "Wayne");
 console.log(batman.sayHi());
 console.log(batman.sayMyName());
+
+//--------------------- Iterables and Iterators-----------------
+// ----for loop---
+//with for loop we have some difficulties accessing the data
+//String
+// const str = "Hello";
+
+// for (let i = 0; i < str.length; i++) {
+//   console.log(str.charAt(i));
+// }
+
+// //Array
+// const arr = ["H", "e", "l", "l", "o"];
+// for (let i = 0; i < arr.length; i++) {
+//   console.log(arr[i]);
+// }
+
+// ----for...0f loop---
+// with the new protocol - for...of loop, it's easy and clean to iterate and add any functionality to each item at a time.
+//string
+const string = "Hello";
+for (const item of string) {
+  console.log(item);
+}
+//array
+const array = ["H", "E", "L", "L", "O"];
+for (const item of array) {
+  console.log(item);
+}
+
+// GENERATORS
+function* generatorFunction() {
+  yield "Hello";
+  yield "World";
+}
+
+const generatorObject = generatorFunction();
+
+for (const word of generatorObject) {
+  console.log(word);
+}
