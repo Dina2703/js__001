@@ -140,3 +140,60 @@ function sayMyname() {
 }
 
 sayMyname();
+
+//---------Prototype----------
+function User(fName, lName) {
+  this.firstName = fName;
+  this.lastName = lName;
+}
+
+const user1 = new User("Sun", "Gray");
+const user2 = new User("Luna", "Night");
+
+//when you define a new property to an object, that was created using 'new' keyword, the property is accessible only for the object that we used. So 'getFullname' is works only for the 'user1' object, not for the 'user2'
+user1.getFullname = function () {
+  return this.firstName + " " + this.lastName;
+};
+
+console.log(user1.getFullname()); //works fine
+// console.log(user2.getFullname()); //gives an error
+
+//To create shareable properties for the all instance objects (that created using Person object, constructor function ), we can use 'prototype' method, built-in method for all functions in JS.
+User.prototype.getFullName = function () {
+  return this.firstName + " " + this.lastName;
+};
+
+console.log(user1.getFullName());
+console.log(user2.getFullName());
+
+//-------Class------
+
+class PersonMain {
+  //set proporties for the PersonMain object
+  constructor(fName, lName) {
+    this.firstName = fName;
+    this.lastName = lName;
+  }
+  //set methods for the PersonMain object
+  sayMyName() {
+    return this.firstName + " " + this.lastName;
+  }
+}
+
+const classPerson1 = new PersonMain("Jessy", "Cohn");
+console.log(classPerson1.sayMyName());
+
+//Inheritance with class
+class SuperHero extends PersonMain {
+  constructor(fName, lName) {
+    super(fName, lName);
+    this.isMarried = true;
+  }
+  sayHi() {
+    console.log("hi");
+  }
+}
+
+const batman = new SuperHero("Bruce", "Wayne");
+console.log(batman.sayHi());
+console.log(batman.sayMyName());
