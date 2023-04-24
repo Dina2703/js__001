@@ -8,13 +8,41 @@
   </head>
   <body>
     <h2>Asynchronous JS</h2>
-    <p>setTimeout() and setInterval()</p>
+    <h4>setTimeout() and setInterval()</h4>
     <p>
       Timers and Intervals are not part of JS itself. They are implemented by
       the browser and
       <span style="color: red">setTimeout() and setInterval()</span> are
       basically names give to that functionallity in JS
     </p>
+    <h4>Callbacks</h4>
+
+    <ul>
+      <li>
+        <strong>Callbacks </strong> are functions passed as arguments to others
+        functions. The function which accepts a function as an argument or
+        returns a function is called <strong>a higher order function</strong>.
+      </li>
+      <li>
+        They can be <strong>synchronous </strong> if they execute immediatly or
+        they can be <strong>asynchronous </strong> where they get executed after
+        some time has passed, some event has occured or some data has been
+        fetched
+      </li>
+      <li>
+        The phenomenon which happens when we
+        <em>nest multiple callbacks within a function </em> is called
+        <strong> a callback hell</strong>. It makes the code very difficult to
+        understand and maintain.
+      </li>
+      <li>
+        An alternative and the recommend approach now is to use
+        <strong>Promises</strong>
+      </li>
+    </ul>
+    <div id="demo"></div>
+    <button id="btn">click</button>
+
     <script src="script.js"></script>
   </body>
 </html>

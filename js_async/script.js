@@ -32,4 +32,25 @@ function myStopFunction() {
   clearInterval(intervalIDToClear);
 }
 
-setTimeout(myStopFunction, 10000); //it will stop the interval function after 10 sec.
+setTimeout(myStopFunction, 3000); //it will stop the interval function after 10 sec.
+
+//-------CALLBACK FUNCTIONS -----------
+
+//example of the Synchronous Callback. In this case the  callback func defines the logic ((a, b) => a - b) that the higher order function needs to apply.
+let numbers = [1, 20, 13, 41, 15, 6, 0, 2];
+let sorted = numbers.sort((a, b) => a - b);
+console.log(sorted);
+
+//------examples of the Asynchronous Callback.
+//in this example setTimeout() method acts as the higher order function and greetU() func is the callback. It's Asynchronous Callback because the setTimeout() does NOT immediatly run, it waits for .5sec, then executes the callback.
+function greetU(name) {
+  console.log("Hello " + name);
+}
+setTimeout(greetU, 500, "Sunny");
+
+//example with addEventListener(). Here addEventListener() which acts as a higher order func does NOT immediatly run, it wait until user clicks the btn.
+function callback() {
+  document.getElementById("demo").innerHTML = "Hello";
+}
+const btn = document.getElementById("btn");
+btn.addEventListener("click", callback);
