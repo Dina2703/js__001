@@ -43,6 +43,86 @@
     <div id="demo"></div>
     <button id="btn">click</button>
 
+    <h4>Promises</h4>
+    <p>
+      A <strong>Promise</strong> is a proxy for a value not necessarily known
+      when the promise is created. Technically promise is an object in JS
+    </p>
+    <p>A <strong>Promise</strong> can be in any of theses below stages:</p>
+    <ul>
+      <li><strong>Pending</strong> - waiting for result.</li>
+      <li><strong>Fulfilled</strong> - operation completed successfully</li>
+      <li><strong>Rejected</strong> - operation failed.</li>
+    </ul>
+
+    <h3>Why we use Promises?</h3>
+    <p>
+      <strong>Promises</strong> help us deal with asynchronous code in a far
+      more simpler way compared to callbacks. <em>Callbakc hell</em> can be
+      avoided with <strong>Promises</strong>.
+    </p>
+    <h3>How to work with <strong>Promises</strong>?</h3>
+    <h5>3 steps:</h5>
+    <ul>
+      <li>How to create Promise?</li>
+      <li>How to <em>fulfill or reject Promise?</em></li>
+      <li>
+        How to execute callback functions based on whether Promise is fulfilled
+        or rejected? (success callback or failure callback)
+      </li>
+    </ul>
+
+    <h3>How to create a Promise?</h3>
+    we create an instance of a Promise using the <strong>new</strong> keyword
+    with the <em>Promise constructure function.</em>
+    <br />
+    <code>const promise = new Promise()</code>
+    <h3>How to fulfill or reject the Promise?</h3>
+    <p>
+      This Promise() constructure function accepts one function as its argument.
+      So we pass in an arrow function, and this arrow function automatically
+      receives 2 arguments: <strong>resolve</strong> and
+      <strong>reject</strong>.
+    </p>
+    <h4>Resolve and reject are both functions.</h4>
+    <p>
+      <strong>Resolve</strong> is a function which when called changes the
+      status of the <em>promise</em> from <em>pending to fulfilled</em>
+    </p>
+    <p>
+      <strong>Reject</strong> is a function which when called changes the status
+      of the <em>promise</em> from <em>pending to rejected</em>
+    </p>
+    <p>
+      Both these functions are typically called after an
+      <strong>async operation</strong>
+    </p>
+    <h5>Example with resolve() callback:</h5>
+    <br />
+    <code
+      >const promise = new Promise((resolve, reject) => {
+      <br />
+      //some async operation
+      <br />
+      //change status from 'pending' to 'fulfilled'
+      <br />
+      resolve()
+      <br />
+      })</code
+    >
+    <h5>Example with resolve() callback:</h5>
+    <code
+      >const promise = new Promise((resolve, reject) => {
+      <br />
+      //some async operation
+      <br />
+      //change status from 'pending' to 'rejected'
+      <br />
+      reject()
+      <br />
+      })</code
+    >
+
     <script src="script.js"></script>
   </body>
 </html>

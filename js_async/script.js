@@ -54,3 +54,16 @@ function callback() {
 }
 const btn = document.getElementById("btn");
 btn.addEventListener("click", callback);
+
+//-------Promises-------
+//How to create a Promise? Use new keyword and Promise constructure function.
+// const promise = new Promise();
+
+//How to fulfill and reject Promise? The Promise constructure function accepts one function as its argument. So we pass an arrow function. And this arrow function automatically receives 2 arguments: resolve and reject. They both functions.
+const promise = new Promise((resolve, reject) => {
+  // some async operation
+  //call resolve() to change the status of the Promise from 'pending' to 'fulfilled'
+  resolve();
+  //call reject() to change the status of the Promise from 'pending' to 'rejected'
+  reject();
+});
