@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ASync JS</title>
   </head>
-  <body>
+  <body style="padding: 2rem">
     <h2>Asynchronous JS</h2>
     <h4>setTimeout() and setInterval()</h4>
     <p>
@@ -122,7 +122,107 @@
       <br />
       })</code
     >
+    <h3>How to execute callback functions based on the status change?</h3>
+    <p style="color: red">Resolve scenario</p>
 
+    <code>
+      const promise = new Promise((resolve, reject) => {
+      <br />
+      setTimeout(() => {
+      <br />
+      //operation completed successfully
+      <br />
+      //change states from 'pending' to 'fulfilled'
+      <br />
+      resolve()
+      <br />
+      }, 5000)
+      <br />
+      })
+    </code>
+
+    <p style="color: red">Reject scenario</p>
+
+    <code>
+      const promise = new Promise((resolve, reject) => {
+      <br />
+      setTimeout(() => {
+      <br />
+      //operation failed
+      <br />
+      //change states from 'pending' to 'fulfilled'
+      <br />
+      reject()
+      <br />
+      }, 5000)
+      <br />
+      }) <br />
+    </code>
+
+    <h5>Success and failure callbacks</h5>
+
+    <code>
+      const onFullfillmentCallbackFn = (result) => {
+      <br />
+      //resolve was called
+      <br />
+      console.log(result)
+      <br />
+      console.log('set the data')
+      <br />
+      }
+      <br />
+
+      const onRejectionCallbackFn = (error) => {
+      <br />
+      //reject was called
+      <br />
+      console.log(error)
+      <br />
+      console.log('set error message') <br />
+      }
+    </code>
+    <h3>the() and catch() methods</h3>
+
+    <ul>
+      <li>
+        Promise status: pending to fulfilled?
+        <span style="color: red">then() is executed</span>. The then() method
+        automatically gets invoked.
+      </li>
+      <li>
+        Promise status: pending to rejected?
+        <span style="color: red">catch() is executed</span>. The catch() method
+        automatically gets invoked.
+      </li>
+    </ul>
+    <code style="color: red">
+      promise.then(onFullfillmentCallbackFn)
+      <br />
+      promise.catch(onRejectionCallbackFn)
+    </code>
+    <h3>Summary for interview</h3>
+    <ul>
+      <li>Begin by explaining what is a Promise. Explain in your own words.</li>
+
+      <li>How Promises are used for async operations in JS</li>
+      <li>
+        Give an analogy to a real world sceanrion and connect ir back to JS
+      </li>
+      <li>
+        talk about the three states that a Promise can be. Pending, fulfilled
+        and rejcted
+      </li>
+      <li>
+        Talk about the resolve and reject functions and how they change the
+        state of the Promise from pending to fulfilled pr pending to rejected.
+      </li>
+      <li>
+        Finally, talk about the onFulfillment and onREject callback functions
+        which let you decide what to run when a Promise is fulfilled or
+        rejected.
+      </li>
+    </ul>
     <script src="script.js"></script>
   </body>
 </html>

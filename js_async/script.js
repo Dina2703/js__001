@@ -67,3 +67,38 @@ const promise = new Promise((resolve, reject) => {
   //call reject() to change the status of the Promise from 'pending' to 'rejected'
   reject();
 });
+
+//How to execute callback functions based on the status change?
+//Resolve scenario
+const promise1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    //Food truck found
+    //Change status from 'pending' to 'fulfilled
+    resolve("Bringing tacos");
+  }, 5000);
+});
+
+//Reject scenario
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    //Food truck not found
+    //Change status from 'pending' to 'rejected' by calling reject() func
+    // whatever you pass as an argument for the reject() automatically it gets as argument for the
+    reject("Not bringing tacos. Food truck not there.");
+  }, 5000);
+});
+
+//SUCCESS and FAILURE callbacks
+const onFulfillment = (result) => {
+  //resolve was called
+  console.log(result);
+  console.log("Set up the table to eat tacos");
+};
+
+const onRejection = (error) => {
+  //reject was called
+  console.log(error);
+  console.log("Start cooking pasta, No tacos.");
+};
+promise1.then(onFulfillment);
+promise2.catch(onRejection);
