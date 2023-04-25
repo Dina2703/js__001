@@ -182,7 +182,7 @@
       console.log('set error message') <br />
       }
     </code>
-    <h3>the() and catch() methods</h3>
+    <h3>then() and catch() methods</h3>
 
     <ul>
       <li>
@@ -223,6 +223,85 @@
         rejected.
       </li>
     </ul>
-    <script src="script.js"></script>
+
+    <h3>Promise - Part 2</h3>
+    <h4>Chaining Promises</h4>
+
+    <p>
+      Both <em>then()</em> and <em>catch()</em> can be chained.
+      <br />
+      <code>
+        promise.then(onFulfillment)
+        <br />
+        promise.catch(onRejection)
+      </code>
+      <br /> 
+      <p>can be re-writted:</p>
+      <code>promise.then(onFulfillment).catch(onRejection)</code>
+      <script src="script.js"></script>
+    </p>
+
+    <h3>Promise - Part 3</h3>
+    <h4>Promise - static methods</h4>
+    <h5 style="color: red;">Promise.all()</h5>
+    <p>We can use <span style="color: red;">.all()</span> method to query multiple APIs and perform some actions but only after all the APIs have finished loading</p>
+    <br>
+    <code>
+      const promise1 = Promise.resolve(3)
+      <br>
+      const promise2 = 42
+      <br>
+      const promise3 = new Promise((resolve, reject) => {
+        <br>
+        setTimeout(resolve, 100, 'foo')
+        <br>
+      }) <br>
+      Promise.all([promise1, promise2, promise3]).then(value => {
+        <br>
+        console.log(value)
+      }) //expected output: Array [3, 42, 'foo']
+      
+    </code>
+    <br>
+    <strong>Keep in mind,even if one promise gets rejected, promise.all() will reject with that error.</strong>
+    <p>
+      Summary  for the Promise.all()
+    </p>
+    <ul><li>
+      The Promise.all() method takes an iterable of promises as an input and returns a single Promise that resolves to an array of the results of the input promises.
+    </li>
+  <li>
+    Returned promise will resolve when all the input's promises have resolved, or if the input iterable contains no promises.
+  </li>
+<li>
+  It rejects immediately if any of the input promises reject or the non-promises throw an error, and will rejcte with this first rejection message / error.
+</li></ul>
+
+
+<h5 style="color: red;">Promise.allSettled()</h5>
+<p>Promise.allSettled() waits for all input promises to complete regardless of whether or not one of then is rejected. <br>(in contrast with Promise.all() - even if one promise gets rejected, promise.all() will reject with that error.)</p>
+<br>
+<code>
+  const promise1 = Promise.resolve(3)
+  <br>
+  const promise2 = 42
+  <br>
+  const promise3 = new Promise((resolve, reject) => {
+    <br>
+    setTimeout(resolve, 100, 'foo')
+    <br>
+  }) <br>
+  Promise.allSettled([promise1, promise2, promise3]).then(value => {
+    <br>
+    console.log(value)
+  }) //expected output: Array [3, 42, 'foo']
+  
+</code>
+
+<h5 style="color: red;">Promise.race()</h5>
+<p>The Promise.race() method returns a promise that fulfills or rejects as soon as one of the input promises fulfills or rejects, with the value or reason from that promise</p>
+<br>
+
   </body>
+
 </html>

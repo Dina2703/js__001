@@ -102,3 +102,14 @@ const onRejection = (error) => {
 };
 promise1.then(onFulfillment);
 promise2.catch(onRejection);
+
+// -----PROMISE - part 3
+// Promise.all() method
+const promiseOne = Promise.resolve(3); //immediatly resolves
+const promiseTwo = 32; //isn't really a promise
+const promiseTree = new Promise((resolve, reject) => {
+  setTimeout(resolve, 100, "foo"); //resolves after 0.1 sec
+});
+Promise.all([promiseOne, promiseTwo, promiseTree]).then((value) => {
+  console.log(value);
+}); //expected output: Array [3, 32, 'foo]
