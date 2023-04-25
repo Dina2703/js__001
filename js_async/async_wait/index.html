@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Async & Wait</title>
+  </head>
+  <body>
+    <h3>Async / Await</h3>
+    <p>these keywords introduced in ES 2017(ES8)</p>
+    <p>
+      Async /Await keywords allow us to write synchronously -looking code while
+      performing asynchronous tasks behind the scenes.
+    </p>
+
+    <h3 style="color: red">async</h3>
+    <ul>
+      <li>
+        The <span>async</span> keywords is used to declare async functions.
+      </li>
+      <li>
+        Async functions are functions that are instances of the AsyncFunction
+        constructor.
+      </li>
+      <li>
+        Unlike normal functions,
+        <span style="color: red">async functions always return a promise.</span>
+      </li>
+    </ul>
+
+    <ul>
+      <li>
+        Normal function example
+        <br />
+        function greet(){return "hello"}
+        <br />
+        console.log(greet());
+        <br />
+        //browser console: 'Hello'
+      </li>
+
+      <li>
+        async function example
+        <br />
+        <span style="color: red">async </span> function greetAsyncFn(){return
+        "hello"} <br />
+        console.log(greetAsyncFn());
+        <br />
+        //browser console: Promise {<fulfilled />: 'hello'}
+      </li>
+
+      <li>
+        <p>or you can explicitly resolve the promise by re-writting code:</p>
+        <span style="color: red">async </span> function greetAsyncFn(){ <br />
+        return Promise.resolve("hello")
+        <br />
+        } <br />
+        <p>to get only the value, add .then()</p>
+        greetAsyncFn().then(value => console.log(value))
+        <br />
+        //browser console: 'hello'
+      </li>
+    </ul>
+
+    <h3>Await</h3>
+    <ul>
+      <li>
+        Await - The keyword await makes JavaScript wait until that promise
+        settles and returns its result.
+      </li>
+      <li>await only works inside async functions.</li>
+    </ul>
+    <p>
+      With <strong>async/await </strong> we can write even more readable code
+      that a promise chain. <br />
+      In fact, <span style="color: red">error handling </span> is also
+      simplified as you can simply use
+      <span style="color: red">try-catch </span> blocks like you would with
+      synchronous code.
+    </p>
+    <script src="script.js"></script>
+  </body>
+</html>
