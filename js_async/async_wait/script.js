@@ -34,3 +34,66 @@ async function greetWithAwait() {
 }
 
 greetWithAwait();
+
+//--Sequential VS concurrent VS parallel executions
+
+function resolveHello() {
+  return new Promise((resolve) => {
+    setTimeout(function () {
+      resolve("Hello");
+    }, 2000); //logs after 2 sec
+  });
+}
+
+function resolveWorld() {
+  return new Promise((resolve) => {
+    setTimeout(function () {
+      resolve("World"); //logs after 1 sec
+    }, 1000);
+  });
+}
+//Sequential execution. With this way the total execution takes 3 sec( 2 + 1)
+
+async function sequentialStart() {
+  const hello = await resolveHello();
+  console.log(hello);
+
+  const world = await resolveWorld();
+  console.log(world);
+}
+
+sequentialStart(); //total time take = 3sec
+
+//Concurrent execution. With this way the total execution takes 2 sec.
+
+async function concurrentStart() {
+  const hello = resolveHello();
+  const world = resolveWorld();
+
+  console.log(await hello);
+  console.log(await world);
+}
+
+concurrentStart(); //Total time taken = 2 sec
+
+//Parallel execution.
+//Parallel execution example with normal func()
+function parallel() {
+  Promise.all([
+    (async () => console.log(await resolveHello()))(),
+    (async () => console.log(await resolveWorld()))(),
+  ]);
+}
+
+parallel(); //logged 'World', "Hello"
+
+//Parallel execution example with async func()
+async function parallelAsync() {
+  await Promise.all([
+    (async () => console.log(await resolveHello()))(),
+    (async () => console.log(await resolveWorld()))(),
+  ]);
+  console.log("Finally");
+}
+
+parallelAsync(); //logs "World", "Hello", "Finally"
